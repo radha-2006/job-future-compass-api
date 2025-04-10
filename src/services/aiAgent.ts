@@ -1,9 +1,17 @@
+
 import { getApiKey } from './apiKeys';
+
+/**
+ * Open Source AI Agent Service for Future Job Finder
+ * 
+ * This is an open source implementation that connects to various LLM APIs.
+ * Licensed under MIT License - feel free to modify and redistribute.
+ */
 
 export type AgentMessage = {
   id: string;
   content: string;
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
   timestamp: Date;
 };
 
@@ -44,7 +52,7 @@ export const sendMessageToGemini = async (messages: AgentMessage[], query: strin
   try {
     // Format conversation history for Gemini
     const formattedMessages = messages.map(msg => ({
-      role: msg.role,
+      role: msg.role === 'system' ? 'user' : msg.role, // Gemini doesn't support system role directly
       parts: [{ text: msg.content }]
     }));
     
@@ -108,7 +116,7 @@ export const searchJobsWithAI = async (query: string, history: AgentMessage[] = 
     const systemPrompt: AgentMessage = {
       id: generateId(),
       content: "You are an AI career assistant in the Future Job Finder app. Help users explore emerging tech careers based on their skills and interests. Provide specific job recommendations from our database and relevant skill development advice.",
-      role: 'assistant',
+      role: 'system',
       timestamp: new Date()
     };
     

@@ -5,10 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar } from '@/components/ui/avatar';
-import { Bot, Send, User, Settings } from 'lucide-react';
+import { Bot, Send, User, Settings, Github } from 'lucide-react';
 import { AgentMessage, generateId, searchJobsWithAI, checkRequiredApiKeys, getMissingApiKeys } from '@/services/aiAgent';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const AiAgentChat: React.FC = () => {
   const [input, setInput] = useState<string>('');
@@ -101,16 +102,52 @@ const AiAgentChat: React.FC = () => {
       <CardHeader className="px-4 py-3 border-b flex flex-row items-center justify-between">
         <CardTitle className="text-lg flex items-center gap-2">
           <Bot className="h-5 w-5 text-primary" />
-          Future Job Finder AI Assistant
+          Open Source AI Assistant
         </CardTitle>
-        {!apiKeysConfigured && (
-          <Button variant="outline" size="sm" asChild>
-            <Link to="/settings" className="flex items-center gap-1">
-              <Settings className="h-4 w-4" />
-              Configure API Keys
-            </Link>
-          </Button>
-        )}
+        <div className="flex items-center gap-2">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="outline" size="sm" className="flex items-center gap-1">
+                <Github className="h-4 w-4" />
+                Open Source
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Open Source AI Agent</DialogTitle>
+                <DialogDescription>
+                  This AI assistant is completely open source and licensed under the MIT License.
+                  You can modify, distribute, and use the code for your own projects.
+                  The agent connects to various LLM APIs like Google's Gemini and is designed
+                  to be easily extensible for adding new AI providers.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 mt-4">
+                <h4 className="font-medium">Features:</h4>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Open source implementation</li>
+                  <li>Multiple AI provider support</li>
+                  <li>Conversation management</li>
+                  <li>Customizable prompts</li>
+                  <li>MIT licensed</li>
+                </ul>
+                <p className="text-sm text-muted-foreground">
+                  This project uses the Gemini API by default, but you can modify the code to use
+                  other providers like OpenAI, Hugging Face, or Pinecone.
+                </p>
+              </div>
+            </DialogContent>
+          </Dialog>
+          
+          {!apiKeysConfigured && (
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/settings" className="flex items-center gap-1">
+                <Settings className="h-4 w-4" />
+                Configure API Keys
+              </Link>
+            </Button>
+          )}
+        </div>
       </CardHeader>
       <CardContent className="p-0 flex-grow overflow-hidden">
         <ScrollArea className="h-full max-h-[400px] p-4">

@@ -20,10 +20,10 @@ const Index = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="explore" className="w-full max-w-6xl mx-auto">
+        <Tabs defaultValue="assistant" className="w-full max-w-6xl mx-auto">
           <TabsList className="grid w-full grid-cols-2 mb-8">
             <TabsTrigger value="explore">Explore Options</TabsTrigger>
-            <TabsTrigger value="assistant">AI Assistant</TabsTrigger>
+            <TabsTrigger value="assistant">Open Source AI Assistant</TabsTrigger>
           </TabsList>
           
           <TabsContent value="explore" className="mt-0">
@@ -68,6 +68,12 @@ const Index = () => {
           
           <TabsContent value="assistant" className="mt-0">
             <div className="max-w-3xl mx-auto">
+              <div className="mb-4 text-center">
+                <h2 className="text-2xl font-bold">Open Source AI Career Assistant</h2>
+                <p className="text-muted-foreground">
+                  Our AI assistant is built on open source technology. You can modify, extend, and contribute to its development.
+                </p>
+              </div>
               <AiAgentChat />
             </div>
           </TabsContent>
