@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Jobs from "./pages/Jobs";
 import Trends from "./pages/Trends";
 import Assessment from "./pages/Assessment";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/trends" element={<Trends />} />
           <Route path="/assessment" element={<Assessment />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
