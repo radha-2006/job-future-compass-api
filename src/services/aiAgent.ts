@@ -1,4 +1,3 @@
-
 import { getApiKey } from './apiKeys';
 
 export type AgentMessage = {
@@ -106,7 +105,7 @@ export const sendMessageToGemini = async (messages: AgentMessage[], query: strin
 // Sample agent for searching jobs based on skills
 export const searchJobsWithAI = async (query: string, history: AgentMessage[] = []): Promise<string> => {
   try {
-    const systemPrompt = {
+    const systemPrompt: AgentMessage = {
       id: generateId(),
       content: "You are an AI career assistant in the Future Job Finder app. Help users explore emerging tech careers based on their skills and interests. Provide specific job recommendations from our database and relevant skill development advice.",
       role: 'assistant',
