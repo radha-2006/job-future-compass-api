@@ -105,6 +105,9 @@ export default {
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'future-gradient': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #3b82f6 100%)'
+			},
+			backgroundSize: {
+				'300%': '300%'
 			}
 		}
 	},
